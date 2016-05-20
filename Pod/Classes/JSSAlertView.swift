@@ -332,15 +332,21 @@ public class JSSAlertView: UIViewController {
 		
 		// Button
 		self.noButtons = true
+        var primaryButtonColor:UIColor?
+        var secondaryButtonColor:UIColor?
+        primaryButtonColor = UIColorFromHex(0x055DA3, alpha: 1)
+        secondaryButtonColor = UIColorFromHex(0x217EC7, alpha: 1)
+        
 		if noButtons == false {
 			self.noButtons = false
 			self.dismissButton = UIButton()
-			let buttonColor = UIImage.withColor(adjustBrightness(baseColor!, amount: 0.8))
-			let buttonHighlightColor = UIImage.withColor(adjustBrightness(baseColor!, amount: 0.9))
+			let buttonColor = UIImage.withColor(adjustBrightness(primaryButtonColor!, amount: 1.0))
+			let buttonHighlightColor = UIImage.withColor(adjustBrightness(primaryButtonColor!, amount: 0.9))
 			dismissButton.setBackgroundImage(buttonColor, forState: .Normal)
 			dismissButton.setBackgroundImage(buttonHighlightColor, forState: .Highlighted)
 			dismissButton.addTarget(self, action: #selector(JSSAlertView.buttonTap), forControlEvents: .TouchUpInside)
 			alertBackgroundView!.addSubview(dismissButton)
+            
 			// Button text
 			self.buttonLabel = UILabel()
 			buttonLabel.textColor = textColor
@@ -356,8 +362,8 @@ public class JSSAlertView: UIViewController {
 			// Second cancel button
 			if cancelButtonText != nil {
 				self.cancelButton = UIButton()
-				let buttonColor = UIImage.withColor(adjustBrightness(baseColor!, amount: 0.8))
-				let buttonHighlightColor = UIImage.withColor(adjustBrightness(baseColor!, amount: 0.9))
+				let buttonColor = UIImage.withColor(adjustBrightness(secondaryButtonColor!, amount: 0.8))
+				let buttonHighlightColor = UIImage.withColor(adjustBrightness(secondaryButtonColor!, amount: 0.9))
 				cancelButton.setBackgroundImage(buttonColor, forState: .Normal)
 				cancelButton.setBackgroundImage(buttonHighlightColor, forState: .Highlighted)
 				cancelButton.addTarget(self, action: #selector(JSSAlertView.cancelButtonTap), forControlEvents: .TouchUpInside)
